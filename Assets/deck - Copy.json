@@ -1,0 +1,9 @@
+{"cardName":"Strike","energyCost":1,"attack":1,"defense":0,"heal":0,"cardDescription":"Deal 1 damage.","tags":[0]}
+{"cardName":"Strike","energyCost":1,"attack":1,"defense":0,"heal":0,"cardDescription":"Deal 1 damage.","tags":[0]}
+{"cardName":"Double Strike","energyCost":2,"attack":2,"defense":0,"heal":0,"cardDescription":"Deal 2 damage.","tags":[0]}
+{"cardName":"Shield","energyCost":1,"attack":0,"defense":1,"heal":0,"cardDescription":"Gain 1 shield.","tags":[1]}
+{"cardName":"Hard Shield","energyCost":2,"attack":0,"defense":2,"heal":0,"cardDescription":"Gain 2 shield.","tags":[1]}
+{"cardName":"Healing Potion","energyCost":3,"attack":0,"defense":0,"heal":2,"cardDescription":"Recover 2 hit points.","tags":[2]}
+{"cardName":"Triple Strike","energyCost":3,"attack":3,"defense":0,"heal":0,"cardDescription":"Deal 3 damage.","tags":[0]}
+{"cardName":"Expert Strike","energyCost":3,"attack":2,"defense":1,"heal":0,"cardDescription":"Deal 2 damage and gain 1 shield.","tags":[0,1]}
+{"cardName":"Defensive Strike","energyCost":2,"attack":1,"defense":1,"heal":0,"cardDescription":"Deal 1 damage and gain 1 shield.","tags":[0,1]}

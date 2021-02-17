@@ -1,0 +1,4 @@
+{"effectName":"Strike","description":"deal 1 damage","rarity":0,"tags":[0],"energyCost":1,"attack":1,"defense":0,"heal":0}
+{"effectName":"Defend","description":"gain 1 shield","rarity":0,"tags":[1],"energyCost":1,"attack":0,"defense":1,"heal":0}
+{"effectName":"Heal","description":"recover 2 hit points","rarity":0,"tags":[2],"energyCost":3,"attack":0,"defense":0,"heal":2}
+{"effectName":"Defensive Strike","description":"deal 1 damage and gain 1 shield","rarity":1,"tags":[0,1],"energyCost":2,"attack":1,"defense":1,"heal":0}
