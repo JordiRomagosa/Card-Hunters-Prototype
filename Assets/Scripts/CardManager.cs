@@ -25,6 +25,13 @@ public class CardManager : MonoBehaviour
         sr.Close();
     }
 
+    public List<Card> LoadDeck(string saveFile)
+    {
+        this.saveFile = saveFile;
+        LoadCards();
+        return cardList;
+    }
+
     public void SaveCards()
     {
         if (File.Exists(saveFile))
