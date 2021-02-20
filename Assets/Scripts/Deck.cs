@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Deck : MonoBehaviour
 {
     public CardManager cardManager;
     public string deckFileName = "Assets/deck.json";
 
-    private List<Card> allDeckCards;
-    private List<Card> currentDeck;
+    public Text deckCountDisplay;
+
+    public List<Card> allDeckCards; //TODO: make private
+    public List<Card> currentDeck;
 
     void Start()
     {
@@ -26,7 +29,7 @@ public class Deck : MonoBehaviour
         return currentDeck.Count == 0;
     }
 
-    public Card DrawCard()
+    public Card DrawNextCard()
     {
         if (DeckIsEmpty())
         {
@@ -35,6 +38,7 @@ public class Deck : MonoBehaviour
 
         Card drawnCard = currentDeck[0];
         currentDeck.RemoveAt(0);
+        deckCountDisplay.text = currentDeck.Count.ToString();
 
         return drawnCard;
     }
@@ -50,5 +54,7 @@ public class Deck : MonoBehaviour
             currentDeck[i] = currentDeck[randomIndex];
             currentDeck[randomIndex] = temp;
         }
+
+        deckCountDisplay.text = currentDeck.Count.ToString();
     }
 }
