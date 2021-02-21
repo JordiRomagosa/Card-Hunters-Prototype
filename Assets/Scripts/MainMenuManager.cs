@@ -7,7 +7,7 @@ public class MainMenuManager : MonoBehaviour
 {
     public void ButtonPressedStartGame()
     {
-        //SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Battle");
     }
     
     public void ButtonPressedManageDeck()

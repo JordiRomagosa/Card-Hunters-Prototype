@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    public const string PLAYER_SAVE_FILE = "Assets/deck.json";
+    public const string PLAYER_DEFAULT_SAVE_FILE = "Assets/deck.json";
 
-    public string saveFile = PLAYER_SAVE_FILE;
+    public string saveFile = PLAYER_DEFAULT_SAVE_FILE;
 
     public List<Card> cardList;
 

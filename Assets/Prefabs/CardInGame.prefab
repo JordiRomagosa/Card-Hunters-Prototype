@@ -255,6 +255,8 @@ MonoBehaviour:
     energyCost: 0
     attack: 0
     defense: 0
+    heal: 0
+    shieldBreak: 0
     cardDescription: 
     tags: 
   isSelected: 0

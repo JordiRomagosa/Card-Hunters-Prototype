@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public Deck playerDeck;
-
+    public Hand playerHand;
 
     void Start()
     {
@@ -19,9 +19,17 @@ public class GameController : MonoBehaviour
 
     public void DrawCard()
     {
+        if (playerHand.MaximumHandIsReached())
+        {
+            Debug.Log("Max hand reached");
+            return;
+        }
+
         if (!playerDeck.DeckIsEmpty())
         {
             Card drawnCard = playerDeck.DrawNextCard();
+            playerHand.AddCardToHand(drawnCard);
+            playerHand.ShowHandCards();
         }
 
         else
