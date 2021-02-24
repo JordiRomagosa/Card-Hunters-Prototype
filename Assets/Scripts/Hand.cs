@@ -33,6 +33,18 @@ public class Hand : MonoBehaviour
         return true;
     }
 
+    public Card RemoveCardFromHand(int cardIndex)
+    {
+        if (cardIndex > cardsInHand.Count)
+        {
+            return null;
+        }
+
+        Card removed = cardsInHand[cardIndex - 1];
+        cardsInHand.RemoveAt(cardIndex - 1);
+        return removed;
+    }
+
     public void ShowHandCards()
     {
         foreach (Transform child in handCardArea.transform)
@@ -74,16 +86,14 @@ public class Hand : MonoBehaviour
             GameObject cardInGame = Instantiate(instantiatedCard, handCardArea.transform);
             float displacement = GetCardPositionInHand(i, cardsInHand.Count, cardWidth, cardPadding);
             cardInGame.transform.position += new Vector3(displacement / 57.0f, 0, 0);
+
+            CardUpdater newCard = cardInGame.GetComponent<CardUpdater>();
+            newCard.card = cardsInHand[i - 1];
+            newCard.UpdateCardValues();
+
+            DragAndDrop cardDrop = cardInGame.GetComponent<DragAndDrop>();
+            cardDrop.cardHandIndex = i;
         }
-
-        //foreach (Card card in cardsInHand)
-        //{
-        //    //CardUpdater newCard = cardInGame.GetComponent<CardUpdater>();
-        //    //newCard.card = card;
-        //    //newCard.UpdateCardValues();
-
-        //    //cards.Add(newCard);
-        //}
 
         GameObject.Destroy(instantiatedCard.gameObject);
     }
