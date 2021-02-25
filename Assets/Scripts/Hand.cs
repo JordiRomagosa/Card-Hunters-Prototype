@@ -9,8 +9,7 @@ public class Hand : MonoBehaviour
 
     public uint maxHand;
     public float maxPadding;
-    public List<Card> cardsInHand; //TODO: make private
-    //private List<CardUpdater> cards;
+    public List<Card> cardsInHand;
 
     void Start()
     {

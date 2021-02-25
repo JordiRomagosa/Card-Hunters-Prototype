@@ -10,8 +10,8 @@ public class Deck : MonoBehaviour
 
     public Text deckCountDisplay;
 
-    public List<Card> allDeckCards; //TODO: make private
-    public List<Card> currentDeck; 
+    private List<Card> allDeckCards;
+    private List<Card> currentDeck; 
 
     void Start()
     {

@@ -13,13 +13,20 @@ public class GameController : MonoBehaviour
     public GameObject cardDiscardZone;
     public GameObject cardPrefab;
 
+    public StatusController playerStatus;
+    public StatusController enemyStatus;
+
     private List<Card> cardsPlayed;
     public Text discardCountDisplay;
-    public List<Card> discardedCards; //TODO: make private?
+    private List<Card> discardedCards;
 
     void Start()
     {
         cardsPlayed = new List<Card>();
+        discardedCards = new List<Card>();
+
+        playerStatus.UpdateStatus();
+        enemyStatus.UpdateStatus();
     }
 
     public void DrawCard()
