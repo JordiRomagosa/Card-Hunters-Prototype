@@ -11,7 +11,7 @@ public class Deck : MonoBehaviour
     public Text deckCountDisplay;
 
     public List<Card> allDeckCards; //TODO: make private
-    public List<Card> currentDeck;
+    public List<Card> currentDeck; 
 
     void Start()
     {
@@ -53,6 +53,34 @@ public class Deck : MonoBehaviour
             int randomIndex = Random.Range(i, currentDeck.Count);
             currentDeck[i] = currentDeck[randomIndex];
             currentDeck[randomIndex] = temp;
+        }
+
+        deckCountDisplay.text = currentDeck.Count.ToString();
+    }
+
+    public void ShuffleDiscards(List<Card> handCards)
+    {
+        ShuffleDeck();
+
+        foreach (Card card in handCards)
+        {
+            currentDeck.Remove(card);
+        }
+        
+        deckCountDisplay.text = currentDeck.Count.ToString();
+    }
+
+    public void ShuffleDiscardsExceptPlayed(List<Card> handCards, List<Card> playedCards)
+    {
+        ShuffleDeck();
+
+        foreach (Card card in handCards)
+        {
+            currentDeck.Remove(card);
+        }
+        foreach (Card card in playedCards)
+        {
+            currentDeck.Remove(card);
         }
 
         deckCountDisplay.text = currentDeck.Count.ToString();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -8,19 +9,17 @@ public class GameController : MonoBehaviour
     public Hand playerHand;
 
     public GameObject canvas;
-    public GameObject cardDropZone;
+    public GameObject cardPlayZone;
+    public GameObject cardDiscardZone;
     public GameObject cardPrefab;
 
     private List<Card> cardsPlayed;
+    public Text discardCountDisplay;
+    public List<Card> discardedCards; //TODO: make private?
 
     void Start()
     {
         cardsPlayed = new List<Card>();
-    }
-
-    void Update()
-    {
-
     }
 
     public void DrawCard()
@@ -40,7 +39,9 @@ public class GameController : MonoBehaviour
 
         else
         {
-            playerDeck.ShuffleDeck();
+            playerDeck.ShuffleDiscardsExceptPlayed(playerHand.cardsInHand, cardsPlayed);
+            discardedCards.Clear();
+            discardCountDisplay.text = discardedCards.Count.ToString();
         }
     }
 
@@ -56,8 +57,9 @@ public class GameController : MonoBehaviour
     public bool DropCard(int cardHandIndex)
     {
         Vector2 mousePos = GetCanvasMousePosition();
-        RectTransform rt = (RectTransform)cardDropZone.transform;
 
+        //Drop on play zone
+        RectTransform rt = (RectTransform)cardPlayZone.transform;
         Vector3[] v = new Vector3[4];
         rt.GetWorldCorners(v);
 
@@ -71,19 +73,33 @@ public class GameController : MonoBehaviour
             return true;
         }
 
+        //Drop on discard zone
+        rt = (RectTransform)cardDiscardZone.transform;
+        rt.GetWorldCorners(v);
+
+        if (mousePos.x > v[0].x && mousePos.x < v[2].x && mousePos.y > v[0].y && mousePos.y < v[2].y)
+        {
+            Card removedCard = playerHand.RemoveCardFromHand(cardHandIndex);
+            discardedCards.Add(removedCard);
+
+            playerHand.ShowHandCards();
+            discardCountDisplay.text = discardedCards.Count.ToString();
+            return true;
+        }
+
         return false;
     }
 
     private void ShowPlayedCards()
     {
-        foreach (Transform child in cardDropZone.transform)
+        foreach (Transform child in cardPlayZone.transform)
         {
             GameObject.Destroy(child.gameObject);
         }
 
         foreach (Card card in cardsPlayed)
         {
-            GameObject cardPlayed = Instantiate(cardPrefab, cardDropZone.transform);
+            GameObject cardPlayed = Instantiate(cardPrefab, cardPlayZone.transform);
             CardUpdater newCard = cardPlayed.GetComponent<CardUpdater>();
             newCard.card = card;
             newCard.UpdateCardValues();
