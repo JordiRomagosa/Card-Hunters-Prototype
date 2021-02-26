@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    public const uint DRAW_ENERGY_COST = 2;
+    public const uint DISCARD_ENERGY_BONUS = 1;
+    public const uint INITIAL_CARD_DRAW = 5;
+
     public Deck playerDeck;
     public Hand playerHand;
 
@@ -28,7 +32,18 @@ public class GameController : MonoBehaviour
         cardsPlayed = new List<Card>();
         discardedCards = new List<Card>();
 
-        UpdateCharactersStatus(true, true);
+        StartFirstTurn();
+    }
+
+    public void ButtonDrawCard()
+    {
+        if (player.energyCurrent < DRAW_ENERGY_COST)
+        {
+            return;
+        }
+        player.energyCurrent -= DRAW_ENERGY_COST;
+        DrawCard();
+        UpdateCharactersStatus(true, false);
     }
 
     public void DrawCard()
@@ -120,10 +135,23 @@ public class GameController : MonoBehaviour
 
             playerHand.ShowHandCards();
             discardCountDisplay.text = discardedCards.Count.ToString();
+
+            player.energyCurrent += DISCARD_ENERGY_BONUS;
+            UpdateCharactersStatus(true, false);
             return true;
         }
 
         return false;
+    }
+
+    public void StartFirstTurn()
+    {
+        for (int i = 0; i < INITIAL_CARD_DRAW; i++)
+        {
+            DrawCard();
+        }
+
+        UpdateScreenForNewTurn();
     }
 
     public void EndTurnAndStartNext()
@@ -144,10 +172,10 @@ public class GameController : MonoBehaviour
         player.StartNextTurn();
         //enemy.StartNextTurn();
 
-        UpdateScreenForNextTurn();
+        UpdateScreenForNewTurn();
     }
 
-    private void UpdateScreenForNextTurn()
+    private void UpdateScreenForNewTurn()
     {
         UpdateCharactersStatus(true, true);
         ShowPlayedCards();

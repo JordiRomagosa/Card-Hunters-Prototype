@@ -13,7 +13,7 @@ public class Deck : MonoBehaviour
     private List<Card> allDeckCards;
     private List<Card> currentDeck; 
 
-    void Start()
+    void Awake()
     {
         allDeckCards = cardManager.LoadDeck(deckFileName);
         uint id = 0;

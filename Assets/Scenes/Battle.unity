@@ -1752,7 +1752,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1927844578}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: DrawCard
+        m_MethodName: ButtonDrawCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3607,6 +3607,7 @@ MonoBehaviour:
   enemyStatus: {fileID: 141354841}
   enemy: {fileID: 141354842}
   discardCountDisplay: {fileID: 203043291}
+  discardedCards: []
 --- !u!1 &1943090528
 GameObject:
   m_ObjectHideFlags: 0
