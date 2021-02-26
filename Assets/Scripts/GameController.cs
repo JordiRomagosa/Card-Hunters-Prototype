@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
 
     private List<Card> cardsPlayed;
     public Text discardCountDisplay;
-    private List<Card> discardedCards;
+    public List<Card> discardedCards;
 
     void Start()
     {
@@ -36,22 +36,20 @@ public class GameController : MonoBehaviour
         if (playerHand.MaximumHandIsReached())
         {
             Debug.Log("Max hand reached");
-            return;
         }
 
-        if (!playerDeck.DeckIsEmpty())
-        {
-            Card drawnCard = playerDeck.DrawNextCard();
-            playerHand.AddCardToHand(drawnCard);
-            playerHand.ShowHandCards();
-        }
-
-        else
+        if (playerDeck.DeckIsEmpty())
         {
             playerDeck.ShuffleDiscardsExceptPlayed(playerHand.cardsInHand, cardsPlayed);
             discardedCards.Clear();
             discardCountDisplay.text = discardedCards.Count.ToString();
+
+            
         }
+
+        Card drawnCard = playerDeck.DrawNextCard();
+        playerHand.AddCardToHand(drawnCard);
+        playerHand.ShowHandCards();
     }
 
     public Vector2 GetCanvasMousePosition()
@@ -126,6 +124,35 @@ public class GameController : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void EndTurnAndStartNext()
+    {
+        foreach (Card card in cardsPlayed)
+        {
+            player.RealizeCardActionsReturnDamage(enemy, card);
+            discardedCards.Add(card);
+        }
+
+        cardsPlayed = new List<Card>();
+
+        for (int i = 0; i < player.cardDraw; i++)
+        {
+            DrawCard();
+        }
+
+        player.StartNextTurn();
+        //enemy.StartNextTurn();
+
+        UpdateScreenForNextTurn();
+    }
+
+    private void UpdateScreenForNextTurn()
+    {
+        UpdateCharactersStatus(true, true);
+        ShowPlayedCards();
+        playerHand.ShowHandCards();
+        discardCountDisplay.text = discardedCards.Count.ToString();
     }
 
     private void ShowPlayedCards()
