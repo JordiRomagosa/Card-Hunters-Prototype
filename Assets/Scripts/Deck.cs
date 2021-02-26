@@ -16,6 +16,13 @@ public class Deck : MonoBehaviour
     void Start()
     {
         allDeckCards = cardManager.LoadDeck(deckFileName);
+        uint id = 0;
+        foreach (Card c in allDeckCards)
+        {
+            c.cardID = id;
+            id++;
+        }
+
         ShuffleDeck();
     }
 
@@ -84,5 +91,18 @@ public class Deck : MonoBehaviour
         }
 
         deckCountDisplay.text = currentDeck.Count.ToString();
+    }
+
+    public Card GetCardWithID(uint cardId)
+    {
+        foreach (Card card in allDeckCards)
+        {
+            if (card.cardID == cardId)
+            {
+                return card;
+            }
+        }
+
+        return null;
     }
 }

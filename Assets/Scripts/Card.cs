@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Card
 {
+    public uint cardID;
+
     public string cardName;
     public uint energyCost;
     public uint attack;

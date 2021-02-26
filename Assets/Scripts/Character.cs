@@ -4,28 +4,27 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public uint startingHealthPoints = 20;
-    public uint startingEnergyPoints = 0;
-    public uint startingShieldPoints = 0;
-    public uint energyPointsPerTurn = 2;
+    public uint healthMax;
+    public uint energyMax;
+    public uint energyStart;
+    public uint energyRecovery;
+    public uint cardDraw;
 
-    private uint healthPoints;
-    private uint energyPoints;
-    private uint shieldPoints;
-
-    private Card playingCard;
+    public uint healthCurrent;
+    public uint energyCurrent;
+    public uint shieldCurrent;
 
     void Start()
     {
-        healthPoints = startingHealthPoints;
-        energyPoints = startingEnergyPoints;
-        shieldPoints = startingShieldPoints;
+        healthCurrent = healthMax;
+        energyCurrent = energyStart;
+        shieldCurrent = 0;
     }
 
     public void StartNextTurn()
     {
-        energyPoints += energyPointsPerTurn;
-        shieldPoints = 0;
+        energyCurrent += energyRecovery;
+        shieldCurrent = 0;
     }
 
     public bool CanUseCard(Card card)
@@ -35,27 +34,38 @@ public class Character : MonoBehaviour
             return false;
         }
 
-        return card.energyCost <= energyPoints;
+        return card.energyCost <= energyCurrent;
     }
 
-    public bool PrepareCardToUse(Card card)
+    public bool PrepareCardToUse(Card playingCard)
     {
-        if (card == null)
+        if (playingCard == null)
         {
             return false;
         }
 
-        energyPoints -= card.energyCost;
-        shieldPoints += card.defense;
-        healthPoints += card.heal;
-
-        playingCard = card;
+        energyCurrent -= playingCard.energyCost;
+        shieldCurrent += playingCard.defense;
 
         return true;
     }
 
-    public uint RealizeAttackCardActions(Character target)
+    public bool RemoveCardToUse(Card playingCard)
     {
+        if (playingCard == null)
+        {
+            return false;
+        }
+
+        energyCurrent += playingCard.energyCost;
+        shieldCurrent -= playingCard.defense;
+
+        return true;
+    }
+
+    public uint RealizeCardActionsReturnDamage(Character target, Card playingCard)
+    {
+        healthCurrent += playingCard.heal;
         return target.AttackCharacterReturnDamage(playingCard.attack, playingCard.shieldBreak);
     }
 
@@ -63,34 +73,34 @@ public class Character : MonoBehaviour
     {
         uint assignedDamage = attack;
 
-        if (shieldPoints > 0)
+        if (shieldCurrent > 0)
         {
             if (shieldBreak > 0)
             {
-                shieldPoints -= shieldBreak;
+                shieldCurrent -= shieldBreak;
 
-                if (shieldPoints < 0)
+                if (shieldCurrent < 0)
                 {
-                    shieldPoints = 0;
+                    shieldCurrent = 0;
                 }
             }
 
-            if (assignedDamage <= shieldPoints)
+            if (assignedDamage <= shieldCurrent)
             {
-                shieldPoints -= assignedDamage;
+                shieldCurrent -= assignedDamage;
                 return 0;
             }
             else
             {
-                assignedDamage -= shieldPoints;
-                shieldPoints = 0;
+                assignedDamage -= shieldCurrent;
+                shieldCurrent = 0;
             }
         }
 
-        healthPoints -= assignedDamage;
-        if (healthPoints < 0)
+        healthCurrent -= assignedDamage;
+        if (healthCurrent < 0)
         {
-            healthPoints = 0;
+            healthCurrent = 0;
         }
 
         return assignedDamage;

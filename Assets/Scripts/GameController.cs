@@ -11,10 +11,13 @@ public class GameController : MonoBehaviour
     public GameObject canvas;
     public GameObject cardPlayZone;
     public GameObject cardDiscardZone;
+    public GameObject cardHandZone;
     public GameObject cardPrefab;
 
     public StatusController playerStatus;
+    public Character player;
     public StatusController enemyStatus;
+    public Character enemy;
 
     private List<Card> cardsPlayed;
     public Text discardCountDisplay;
@@ -25,8 +28,7 @@ public class GameController : MonoBehaviour
         cardsPlayed = new List<Card>();
         discardedCards = new List<Card>();
 
-        playerStatus.UpdateStatus();
-        enemyStatus.UpdateStatus();
+        UpdateCharactersStatus(true, true);
     }
 
     public void DrawCard()
@@ -61,19 +63,48 @@ public class GameController : MonoBehaviour
         return localPoint / 57.0f;
     }
 
-    public bool DropCard(int cardHandIndex)
+    public bool DropCard(uint cardID)
     {
         Vector2 mousePos = GetCanvasMousePosition();
+        Card playingCard = playerDeck.GetCardWithID(cardID);
+
+        RectTransform rt;
+        Vector3[] v = new Vector3[4];
+
+        //If card is played, check return hand
+        if (cardsPlayed.Contains(playingCard))
+        {
+            rt = (RectTransform)cardHandZone.transform;
+            rt.GetWorldCorners(v);
+
+            if (mousePos.x > v[0].x && mousePos.x < v[2].x && mousePos.y > v[0].y && mousePos.y < v[2].y)
+            {
+                cardsPlayed.Remove(playingCard);
+                playerHand.AddCardToHand(playingCard);
+                player.RemoveCardToUse(playingCard);
+
+                ShowPlayedCards();
+                playerHand.ShowHandCards();
+                UpdateCharactersStatus(true, false);
+                return true;
+            }
+        }
 
         //Drop on play zone
-        RectTransform rt = (RectTransform)cardPlayZone.transform;
-        Vector3[] v = new Vector3[4];
+        rt = (RectTransform)cardPlayZone.transform;
         rt.GetWorldCorners(v);
 
         if (mousePos.x > v[0].x && mousePos.x < v[2].x && mousePos.y > v[0].y && mousePos.y < v[2].y)
         {
-            Card removedCard = playerHand.RemoveCardFromHand(cardHandIndex);
+            if (!player.CanUseCard(playingCard))
+            {
+                return false;
+            }
+
+            Card removedCard = playerHand.RemoveCardFromHand(cardID);
             cardsPlayed.Add(removedCard);
+            player.PrepareCardToUse(removedCard);
+            UpdateCharactersStatus(true, false);
 
             playerHand.ShowHandCards();
             ShowPlayedCards();
@@ -86,7 +117,7 @@ public class GameController : MonoBehaviour
 
         if (mousePos.x > v[0].x && mousePos.x < v[2].x && mousePos.y > v[0].y && mousePos.y < v[2].y)
         {
-            Card removedCard = playerHand.RemoveCardFromHand(cardHandIndex);
+            Card removedCard = playerHand.RemoveCardFromHand(cardID);
             discardedCards.Add(removedCard);
 
             playerHand.ShowHandCards();
@@ -112,6 +143,18 @@ public class GameController : MonoBehaviour
             newCard.UpdateCardValues();
 
             cardPlayed.transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
+    private void UpdateCharactersStatus(bool updatePlayer, bool updateEnemy)
+    {
+        if (updatePlayer)
+        {
+            playerStatus.UpdateStatus(player);
+        }
+        if (updateEnemy)
+        {
+            enemyStatus.UpdateStatus(enemy);
         }
     }
 }

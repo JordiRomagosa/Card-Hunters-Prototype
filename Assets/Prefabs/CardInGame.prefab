@@ -17,7 +17,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7171489213385757403}
+        - m_Target: {fileID: 9339089391455078}
           m_TargetAssemblyTypeName: DragAndDrop, Assembly-CSharp
           m_MethodName: StartDrag
           m_Mode: 1
@@ -33,7 +33,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7171489213385757403}
+        - m_Target: {fileID: 9339089391455078}
           m_TargetAssemblyTypeName: DragAndDrop, Assembly-CSharp
           m_MethodName: EndDrag
           m_Mode: 1
@@ -57,6 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e9fd121016658429c333ec85e0b551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardValues: {fileID: 3774176914097793417}
 --- !u!1001 &2054178321626432737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78,7 +79,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2497590124271415683, guid: 760189b5e4a312849a7705eca2aa44a7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2497590124271415683, guid: 760189b5e4a312849a7705eca2aa44a7, type: 3}
       propertyPath: m_LocalRotation.x
@@ -171,14 +172,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2497590124237183732, guid: 760189b5e4a312849a7705eca2aa44a7, type: 3}
   m_PrefabInstance: {fileID: 2054178321626432737}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7171489213385757403 stripped
+--- !u!114 &3774176914097793417 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9153521425984607802, guid: 760189b5e4a312849a7705eca2aa44a7, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2945769380343803240, guid: 760189b5e4a312849a7705eca2aa44a7, type: 3}
   m_PrefabInstance: {fileID: 2054178321626432737}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4479059287921155605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44e9fd121016658429c333ec85e0b551, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d5cb1837019783479c356058023cf44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

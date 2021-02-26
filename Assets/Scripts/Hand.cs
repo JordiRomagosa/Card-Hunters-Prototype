@@ -32,16 +32,43 @@ public class Hand : MonoBehaviour
         return true;
     }
 
-    public Card RemoveCardFromHand(int cardIndex)
+    public Card GetCardAtIndex(int cardIndex)
     {
         if (cardIndex > cardsInHand.Count)
         {
             return null;
         }
 
-        Card removed = cardsInHand[cardIndex - 1];
-        cardsInHand.RemoveAt(cardIndex - 1);
-        return removed;
+        Card searched = cardsInHand[cardIndex - 1];
+        return searched;
+    }
+
+    public Card GetCardWithID(uint cardId)
+    {
+        foreach (Card card in cardsInHand)
+        {
+            if (card.cardID == cardId)
+            {
+                return card;
+            }
+        }
+
+        return null;
+    }
+
+    public Card RemoveCardFromHand(uint cardId)
+    {
+        foreach (Card card in cardsInHand)
+        {
+            if (card.cardID == cardId)
+            {
+                Card removed = card;
+                cardsInHand.Remove(card);
+                return removed;
+            }
+        }
+
+        return null;
     }
 
     public void ShowHandCards()
@@ -91,7 +118,6 @@ public class Hand : MonoBehaviour
             newCard.UpdateCardValues();
 
             DragAndDrop cardDrop = cardInGame.GetComponent<DragAndDrop>();
-            cardDrop.cardHandIndex = i;
         }
 
         GameObject.Destroy(instantiatedCard.gameObject);

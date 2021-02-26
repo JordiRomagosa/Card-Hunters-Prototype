@@ -258,6 +258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 141354840}
   - component: {fileID: 141354841}
+  - component: {fileID: 141354842}
   m_Layer: 0
   m_Name: EnemyStatusController
   m_TagString: Untagged
@@ -296,11 +297,26 @@ MonoBehaviour:
   energyRecText: {fileID: 1145851819}
   cardDrawText: {fileID: 1790730482}
   isPlayer: 0
+--- !u!114 &141354842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141354839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b7cc3bb8d157f4096e9288c4a586a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   healthMax: 15
   energyMax: 15
   energyStart: 5
-  energyRecovery: 3
+  energyRecovery: 2
   cardDraw: 3
+  healthCurrent: 0
+  energyCurrent: 0
+  shieldCurrent: 0
 --- !u!1 &161935506
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,22 +527,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 288433305, guid: 1dbc7482f385c1245a123e61c02da4a3, type: 3}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 288433306}
-    - target: {fileID: 288433305, guid: 1dbc7482f385c1245a123e61c02da4a3, type: 3}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartDrag
-      objectReference: {fileID: 0}
-    - target: {fileID: 288433305, guid: 1dbc7482f385c1245a123e61c02da4a3, type: 3}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 288433306}
-    - target: {fileID: 288433305, guid: 1dbc7482f385c1245a123e61c02da4a3, type: 3}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EndDrag
-      objectReference: {fileID: 0}
     - target: {fileID: 4479059287921155605, guid: 1dbc7482f385c1245a123e61c02da4a3, type: 3}
       propertyPath: m_Name
       value: CardInGame
@@ -622,17 +622,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4479059287921155605, guid: 1dbc7482f385c1245a123e61c02da4a3, type: 3}
   m_PrefabInstance: {fileID: 288433302}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &288433306 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9339089391455078, guid: 1dbc7482f385c1245a123e61c02da4a3, type: 3}
-  m_PrefabInstance: {fileID: 288433302}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 288433303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44e9fd121016658429c333ec85e0b551, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &379260116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2096,6 +2085,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1234528819}
   - component: {fileID: 1234528820}
+  - component: {fileID: 1234528821}
   m_Layer: 0
   m_Name: PlayerStatusController
   m_TagString: Untagged
@@ -2134,11 +2124,26 @@ MonoBehaviour:
   energyRecText: {fileID: 1875163879}
   cardDrawText: {fileID: 1210783605}
   isPlayer: 1
+--- !u!114 &1234528821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234528818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b7cc3bb8d157f4096e9288c4a586a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   healthMax: 20
   energyMax: 10
   energyStart: 5
   energyRecovery: 2
-  cardDraw: 3
+  cardDraw: 2
+  healthCurrent: 0
+  energyCurrent: 0
+  shieldCurrent: 0
 --- !u!1 &1245942153
 GameObject:
   m_ObjectHideFlags: 0
@@ -3462,9 +3467,12 @@ MonoBehaviour:
   canvas: {fileID: 716694742}
   cardPlayZone: {fileID: 1532145814}
   cardDiscardZone: {fileID: 1353362138}
+  cardHandZone: {fileID: 1943090528}
   cardPrefab: {fileID: 288433303}
   playerStatus: {fileID: 1234528820}
+  player: {fileID: 1234528821}
   enemyStatus: {fileID: 141354841}
+  enemy: {fileID: 141354842}
   discardCountDisplay: {fileID: 203043291}
 --- !u!1 &1943090528
 GameObject:

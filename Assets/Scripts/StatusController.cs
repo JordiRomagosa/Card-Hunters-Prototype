@@ -12,36 +12,21 @@ public class StatusController : MonoBehaviour
 
     public bool isPlayer = true;
 
-    public int healthMax;
-    public int energyMax;
-    public int energyStart;
-    public int energyRecovery;
-    public int cardDraw;
-
-    private int healthCurrent;
-    private int energyCurrent;
-
-    void Start()
-    {
-        healthCurrent = healthMax;
-        energyCurrent = energyStart;
-    }
-
-    public void UpdateStatus()
+    public void UpdateStatus(Character character)
     {
         if (isPlayer)
         {
-            healthText.text = "Health: " + healthCurrent + "/" + healthMax;
-            energyText.text = "Energy:" + energyCurrent + "/" + energyMax;
-            energyRecText.text = "Energy Rec: +" + energyRecovery;
-            cardDrawText.text = "Card Drawn: " + cardDraw;
+            healthText.text = "Health: " + character.healthCurrent + "/" + character.healthMax;
+            energyText.text = "Energy:" + character.energyCurrent + "/" + character.energyMax;
+            energyRecText.text = "Energy Rec: +" + character.energyRecovery;
+            cardDrawText.text = "Card Drawn: " + character.cardDraw;
         }
         else
         {
-            healthText.text = healthCurrent + "/" + healthMax + " :Health";
-            energyText.text = energyCurrent + "/" + energyMax + " :Energy";
-            energyRecText.text = "+" + energyRecovery + " :Energy Rec";
-            cardDrawText.text = cardDraw + " :Card Drawn";
+            healthText.text = character.healthCurrent + "/" + character.healthMax + " :Health";
+            energyText.text = character.energyCurrent + "/" + character.energyMax + " :Energy";
+            energyRecText.text = "+" + character.energyRecovery + " :Energy Rec";
+            cardDrawText.text = character.cardDraw + " :Card Drawn";
         }
     }
 }

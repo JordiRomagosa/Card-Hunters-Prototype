@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
-    public int cardHandIndex;
+   
+    public CardUpdater cardValues;
 
     private bool isDragging = false;
     private Vector2 startPosition;
@@ -34,7 +35,7 @@ public class DragAndDrop : MonoBehaviour
         GameObject gameController = GameObject.Find("GameController");
         if (gameController)
         {
-            if (!gameController.GetComponent<GameController>().DropCard(cardHandIndex))
+            if (!gameController.GetComponent<GameController>().DropCard(cardValues.card.cardID))
             {
                 transform.position = startPosition;
             }
