@@ -22,15 +22,18 @@ public class GameController : MonoBehaviour
     public Character player;
     public StatusController enemyStatus;
     public Character enemy;
+    public EnemyAI enemyAI;
 
     private List<Card> cardsPlayed;
     public Text discardCountDisplay;
-    public List<Card> discardedCards;
+    private List<Card> discardedCards;
 
     void Start()
     {
         cardsPlayed = new List<Card>();
         discardedCards = new List<Card>();
+
+        enemyAI.enemy = enemy;
 
         StartFirstTurn();
     }
@@ -150,6 +153,8 @@ public class GameController : MonoBehaviour
         {
             DrawCard();
         }
+
+        enemyAI.StartFirstTurn(INITIAL_CARD_DRAW, player);
 
         UpdateScreenForNewTurn();
     }
