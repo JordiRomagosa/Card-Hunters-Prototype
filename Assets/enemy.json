@@ -1,0 +1,10 @@
+{"cardID":0,"cardName":"Club","energyCost":1,"attack":1,"defense":0,"heal":0,"shieldBreak":0,"cardDescription":"Deal 2 damage.","tags":[0]}
+{"cardID":0,"cardName":"Club","energyCost":1,"attack":1,"defense":0,"heal":0,"shieldBreak":0,"cardDescription":"Deal 2 damage.","tags":[0]}
+{"cardID":0,"cardName":"Club","energyCost":1,"attack":1,"defense":0,"heal":0,"shieldBreak":0,"cardDescription":"Deal 2 damage.","tags":[0]}
+{"cardID":0,"cardName":"Club","energyCost":1,"attack":1,"defense":0,"heal":0,"shieldBreak":0,"cardDescription":"Deal 2 damage.","tags":[0]}
+{"cardID":0,"cardName":"Strong Club","energyCost":2,"attack":2,"defense":0,"heal":0,"shieldBreak":0,"cardDescription":"Deal 2 damage.","tags":[0]}
+{"cardID":0,"cardName":"Strong Club","energyCost":2,"attack":2,"defense":0,"heal":0,"shieldBreak":0,"cardDescription":"Deal 2 damage.","tags":[0]}
+{"cardID":0,"cardName":"Dodge","energyCost":2,"attack":0,"defense":2,"heal":0,"shieldBreak":0,"cardDescription":"Gain 2 shield.","tags":[1]}
+{"cardID":0,"cardName":"Dodge","energyCost":2,"attack":0,"defense":2,"heal":0,"shieldBreak":0,"cardDescription":"Gain 2 shield.","tags":[1]}
+{"cardID":0,"cardName":"Wild Swing","energyCost":3,"attack":4,"defense":0,"heal":0,"shieldBreak":0,"cardDescription":"Deal 3 damage.","tags":[0]}
+{"cardID":0,"cardName":"Crushing Blow","energyCost":2,"attack":3,"defense":0,"heal":0,"shieldBreak":3,"cardDescription":"Break 2 shield points and then deal 2 damage.","tags":[0,1]}
