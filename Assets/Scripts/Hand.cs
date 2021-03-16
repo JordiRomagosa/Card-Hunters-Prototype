@@ -123,7 +123,7 @@ public class Hand : MonoBehaviour
         GameObject.Destroy(instantiatedCard.gameObject);
     }
 
-    protected float GetCardPositionInHand(int cardNum, int totalCards, float cardWidth, float cardPadding)
+    public float GetCardPositionInHand(int cardNum, int totalCards, float cardWidth, float cardPadding)
     {
         float centralCard = (totalCards + 1.0f) / 2.0f;
         float currentCardRelative = cardNum - centralCard;

@@ -8,6 +8,11 @@ public class HandEnemy : Hand
     public GameObject cardReverse;
     public Text handCountDisplay;
 
+    public bool HasCards()
+    {
+        return cardsInHand.Count > 0;
+    }
+
     public void ShowHandCardsHidden()
     {
         foreach (Transform child in handCardArea.transform)

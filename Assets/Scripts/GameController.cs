@@ -154,7 +154,7 @@ public class GameController : MonoBehaviour
             DrawCard();
         }
 
-        enemyAI.StartFirstTurn(INITIAL_CARD_DRAW, player);
+        enemyAI.StartFirstTurn(player);
 
         UpdateScreenForNewTurn();
     }
