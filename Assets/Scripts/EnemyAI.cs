@@ -28,6 +28,11 @@ public class EnemyAI : MonoBehaviour
         discardedCards = new List<Card>();
     }
 
+    public void ShowCardEffects()
+    {
+        ShowPlayedCards(false);
+    }
+
     public void StartFirstTurn(Character player)
     {
         for (int i = 0; i < INITIAL_CARD_DRAW; i++)
@@ -40,11 +45,18 @@ public class EnemyAI : MonoBehaviour
         ShowPlayedCards(true);
         discardCountDisplay.text = discardedCards.Count.ToString();
     }
-    
 
     public void StartNewTurn(Character player)
     {
-        
+        for (int i = 0; i < enemy.cardDraw; i++)
+        {
+            DrawCard();
+        }
+
+        PlayCardsForTurn(player);
+        enemyHand.ShowHandCardsHidden();
+        ShowPlayedCards(true);
+        discardCountDisplay.text = discardedCards.Count.ToString();
     }
 
     private void PlayCardsForTurn(Character player)
@@ -62,11 +74,6 @@ public class EnemyAI : MonoBehaviour
             enemyHand.RemoveCardFromHand(cardToPlay.cardID);
             enemy.PrepareCardToUse(cardToPlay);
             cardsPlayed.Add(cardToPlay);
-
-            //if (!ContinuePlayingCards())
-            //{
-            //    break;
-            //}
         }
     }
 

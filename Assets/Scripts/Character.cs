@@ -10,13 +10,13 @@ public class Character : MonoBehaviour
     public uint energyRecovery;
     public uint cardDraw;
 
-    public uint healthCurrent;
+    public int healthCurrent;
     public uint energyCurrent;
     public uint shieldCurrent;
 
     void Start()
     {
-        healthCurrent = healthMax;
+        healthCurrent = (int)healthMax;
         energyCurrent = energyStart;
         shieldCurrent = 0;
     }
@@ -24,6 +24,11 @@ public class Character : MonoBehaviour
     public void StartNextTurn()
     {
         energyCurrent += energyRecovery;
+        if (energyCurrent > energyMax)
+        {
+            energyCurrent = energyMax;
+        }
+
         shieldCurrent = 0;
     }
 
@@ -65,7 +70,11 @@ public class Character : MonoBehaviour
 
     public uint RealizeCardActionsReturnDamage(Character target, Card playingCard)
     {
-        healthCurrent += playingCard.heal;
+        healthCurrent += (int)playingCard.heal;
+        if (healthCurrent > healthMax)
+        {
+            healthCurrent = (int)healthMax;
+        }
         return target.AttackCharacterReturnDamage(playingCard.attack, playingCard.shieldBreak);
     }
 
@@ -97,7 +106,7 @@ public class Character : MonoBehaviour
             }
         }
 
-        healthCurrent -= assignedDamage;
+        healthCurrent -= (int)assignedDamage;
         if (healthCurrent < 0)
         {
             healthCurrent = 0;

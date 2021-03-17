@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour
     public Character enemy;
     public EnemyAI enemyAI;
 
+    public Button endTurnButton;
+
     private List<Card> cardsPlayed;
     public Text discardCountDisplay;
     private List<Card> discardedCards;
@@ -53,7 +55,7 @@ public class GameController : MonoBehaviour
     {
         if (playerHand.MaximumHandIsReached())
         {
-            Debug.Log("Max hand reached");
+            //Debug.Log("Max hand reached");
         }
 
         if (playerDeck.DeckIsEmpty())
@@ -161,23 +163,66 @@ public class GameController : MonoBehaviour
 
     public void EndTurnAndStartNext()
     {
-        foreach (Card card in cardsPlayed)
+        PrepareNewTurn();
+        Invoke("ApplyCardEffectsAndStartNewTurn", 3.0f);
+    }
+
+    private void PrepareNewTurn()
+    {
+        endTurnButton.interactable = false;
+        enemyAI.ShowCardEffects();
+        UpdateCharactersStatus(true, true, true);
+    }
+
+    private void ApplyCardEffectsAndStartNewTurn()
+    {
+        ApplyCardEffects();
+        StartNewTurn();
+    }
+
+    private void ApplyCardEffects()
+    {
+        int maxCardsCount = cardsPlayed.Count;
+        if (enemyAI.cardsPlayed.Count > maxCardsCount)
         {
-            player.RealizeCardActionsReturnDamage(enemy, card);
-            discardedCards.Add(card);
+            maxCardsCount = enemyAI.cardsPlayed.Count;
+        }
+
+        Card card;
+        for (int i = 0; i < maxCardsCount; i++)
+        {
+            if (i < cardsPlayed.Count)
+            {
+                card = cardsPlayed[i];
+                player.RealizeCardActionsReturnDamage(enemy, card);
+                discardedCards.Add(card);
+            }
+
+            if (i < enemyAI.cardsPlayed.Count)
+            {
+                card = enemyAI.cardsPlayed[i];
+                enemy.RealizeCardActionsReturnDamage(player, card);
+                enemyAI.discardedCards.Add(card);
+            }
         }
 
         cardsPlayed = new List<Card>();
+        enemyAI.cardsPlayed = new List<Card>();
+    }
 
+    private void StartNewTurn()
+    {
         for (int i = 0; i < player.cardDraw; i++)
         {
             DrawCard();
         }
 
         player.StartNextTurn();
-        //enemy.StartNextTurn();
+        enemy.StartNextTurn();
+        enemyAI.StartNewTurn(player);
 
         UpdateScreenForNewTurn();
+        endTurnButton.interactable = true;
     }
 
     private void UpdateScreenForNewTurn()
@@ -206,7 +251,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void UpdateCharactersStatus(bool updatePlayer, bool updateEnemy)
+    private void UpdateCharactersStatus(bool updatePlayer, bool updateEnemy, bool showEnemyShield = false)
     {
         if (updatePlayer)
         {
@@ -214,7 +259,7 @@ public class GameController : MonoBehaviour
         }
         if (updateEnemy)
         {
-            enemyStatus.UpdateStatus(enemy);
+            enemyStatus.UpdateStatus(enemy, showEnemyShield);
         }
     }
 }
