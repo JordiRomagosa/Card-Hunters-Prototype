@@ -107,10 +107,10 @@ public class Character : MonoBehaviour
         }
 
         healthCurrent -= (int)assignedDamage;
-        if (healthCurrent < 0)
-        {
-            healthCurrent = 0;
-        }
+        //if (healthCurrent < 0)
+        //{
+        //    healthCurrent = 0;
+        //}
 
         return assignedDamage;
     }

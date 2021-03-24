@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class GameController : MonoBehaviour
 {
@@ -30,8 +32,13 @@ public class GameController : MonoBehaviour
     public Text discardCountDisplay;
     private List<Card> discardedCards;
 
+    public GameObject messageArea;
+    public Text winLoseText;
+
     void Start()
     {
+        messageArea.SetActive(false);
+
         cardsPlayed = new List<Card>();
         discardedCards = new List<Card>();
 
@@ -178,6 +185,7 @@ public class GameController : MonoBehaviour
     {
         ApplyCardEffects();
         StartNewTurn();
+        CheckEndGame();
     }
 
     private void ApplyCardEffects()
@@ -261,5 +269,35 @@ public class GameController : MonoBehaviour
         {
             enemyStatus.UpdateStatus(enemy, showEnemyShield);
         }
+    }
+
+    private void CheckEndGame()
+    {
+        if (enemy.healthCurrent <= 0 && player.healthCurrent <= 0)
+        {
+            messageArea.SetActive(true);
+            winLoseText.text = "You have a draw!";
+        }
+        else if (enemy.healthCurrent <= 0)
+        {
+            messageArea.SetActive(true);
+            winLoseText.text = "You won the match!";
+        }
+
+        else if (player.healthCurrent <= 0)
+        {
+            messageArea.SetActive(true);
+            winLoseText.text = "You lost the match!";
+        }
+    }
+
+    public void RestartMatch()
+    {
+        SceneManager.LoadScene("Battle");
+    }
+
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
