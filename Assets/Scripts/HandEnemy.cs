@@ -49,12 +49,11 @@ public class HandEnemy : Hand
             cardPadding = (areaWidth - totalCardWidth) / cardsInHand.Count;
         }
 
-        Vector3 centerPosition = new Vector3(areaWidth / 2 / 57.0f, areaHeight / 2 / 57.0f, 0);
         for (int i = 1; i < cardsInHand.Count + 1; i++)
         {
             GameObject cardInGame = Instantiate(instantiatedCard, handCardArea.transform);
             float displacement = GetCardPositionInHand(i, cardsInHand.Count, cardWidth, cardPadding);
-            cardInGame.transform.position += new Vector3(displacement / 57.0f, 0, 0) + centerPosition;
+            cardInGame.transform.localPosition = new Vector3(displacement, 0.1f, 0);
         }
 
         GameObject.Destroy(instantiatedCard.gameObject);

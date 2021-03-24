@@ -87,13 +87,11 @@ public class Hand : MonoBehaviour
         float cardHeight = rt.rect.height;
         float cardWidth = rt.rect.width;
 
-        if (cardHeight > areaHeight)
-        {
-            float scaleFactor = areaHeight / cardHeight;
-            Vector3 scaleVec = new Vector3(scaleFactor, scaleFactor, scaleFactor);
-            instantiatedCard.transform.localScale = scaleVec;
-            cardWidth *= scaleFactor;
-        }
+        float scaleFactor = areaHeight / cardHeight;
+        Vector3 scaleVec = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+        instantiatedCard.transform.localScale = scaleVec;
+        cardWidth *= scaleFactor;
+        
 
         float totalCardWidth = cardsInHand.Count * cardWidth;
         float cardPadding = maxPadding;
@@ -111,7 +109,7 @@ public class Hand : MonoBehaviour
         {
             GameObject cardInGame = Instantiate(instantiatedCard, handCardArea.transform);
             float displacement = GetCardPositionInHand(i, cardsInHand.Count, cardWidth, cardPadding);
-            cardInGame.transform.position += new Vector3(displacement / 57.0f, 0, 0);
+            cardInGame.transform.localPosition = new Vector3(displacement, 0.1f, 0);
 
             CardUpdater newCard = cardInGame.GetComponent<CardUpdater>();
             newCard.card = cardsInHand[i - 1];

@@ -259,24 +259,17 @@ public class EnemyAI : MonoBehaviour
             cardPadding = (areaWidth - totalCardWidth) / cardsPlayed.Count;
         }
 
-        Vector3 centerPosition = new Vector3(areaWidth / 2 / 57.0f, areaHeight / 2 / 57.0f, 0);
         for (int i = 1; i < cardsPlayed.Count + 1; i++)
         {
             GameObject cardInGame = Instantiate(instantiatedCard, enemyPlayZone.transform);
             float displacement = enemyHand.GetCardPositionInHand(i, cardsPlayed.Count, cardWidth, cardPadding);
-            
+            cardInGame.transform.localPosition = new Vector3(displacement, 0.1f, 0);
 
             if (!hiddenValues)
             {
-                cardInGame.transform.position += new Vector3(displacement / 57.0f, 0, 0);
                 CardUpdater newCard = cardInGame.GetComponent<CardUpdater>();
                 newCard.card = cardsPlayed[i - 1];
                 newCard.UpdateCardValues();
-            }
-
-            else
-            {
-                cardInGame.transform.position += new Vector3(displacement / 57.0f, 0, 0) + centerPosition;
             }
         }
 
