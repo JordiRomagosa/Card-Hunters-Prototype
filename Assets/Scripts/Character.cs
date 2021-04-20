@@ -70,12 +70,20 @@ public class Character : MonoBehaviour
 
     public uint RealizeCardActionsReturnDamage(Character target, Card playingCard)
     {
+        uint damage = target.AttackCharacterReturnDamage(playingCard.attack, playingCard.shieldBreak);
+
+        if (playingCard.vampirism > 0)
+        {
+            healthCurrent += (int) (playingCard.vampirism * damage);
+        }
+
         healthCurrent += (int)playingCard.heal;
         if (healthCurrent > healthMax)
         {
             healthCurrent = (int)healthMax;
         }
-        return target.AttackCharacterReturnDamage(playingCard.attack, playingCard.shieldBreak);
+
+        return damage;
     }
 
     public uint AttackCharacterReturnDamage(uint attack, uint shieldBreak)

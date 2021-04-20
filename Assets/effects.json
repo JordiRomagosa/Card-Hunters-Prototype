@@ -1,5 +1,6 @@
-{"effectName":"Strike","description":"deal 1 damage","rarity":0,"tags":[0],"energyCost":1,"attack":1,"defense":0,"heal":0,"shieldBreak":0}
-{"effectName":"Defend","description":"gain 1 shield","rarity":0,"tags":[1],"energyCost":1,"attack":0,"defense":1,"heal":0,"shieldBreak":0}
-{"effectName":"Heal","description":"recover 1 hit point","rarity":0,"tags":[2],"energyCost":3,"attack":0,"defense":0,"heal":2,"shieldBreak":0}
-{"effectName":"Defensive Strike","description":"deal 1 damage and gain 1 shield","rarity":1,"tags":[0,1],"energyCost":2,"attack":1,"defense":1,"heal":0,"shieldBreak":0}
-{"effectName":"Shield Break","description":"break 1 shield point and then deal 1 damage","rarity":1,"tags":[0,1],"energyCost":1,"attack":1,"defense":0,"heal":0,"shieldBreak":1}
+{"effectName":"Strike","description":"deal 1 damage","rarity":0,"tags":[0],"energyCost":1,"attack":1,"defense":0,"heal":0,"shieldBreak":0,"vampirism":false}
+{"effectName":"Defend","description":"gain 1 shield","rarity":0,"tags":[1],"energyCost":1,"attack":0,"defense":1,"heal":0,"shieldBreak":0,"vampirism":false}
+{"effectName":"Heal","description":"recover 1 hit point","rarity":0,"tags":[2],"energyCost":3,"attack":0,"defense":0,"heal":2,"shieldBreak":0,"vampirism":false}
+{"effectName":"Defensive Strike","description":"deal 1 damage and gain 1 shield","rarity":1,"tags":[0,1],"energyCost":2,"attack":1,"defense":1,"heal":0,"shieldBreak":0,"vampirism":false}
+{"effectName":"Shield Break","description":"deal 1 damage, two if the enemy has shield","rarity":1,"tags":[0,1],"energyCost":1,"attack":0,"defense":1,"heal":0,"shieldBreak":0,"vampirism":false}
+{"effectName":"Vampiric Touch","description":"heal for unblocked damage dealt with this card","rarity":2,"tags":[4],"energyCost":1,"attack":0,"defense":0,"heal":0,"shieldBreak":0,"vampirism":true}

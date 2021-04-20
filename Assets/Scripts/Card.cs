@@ -13,6 +13,7 @@ public class Card
     public uint defense;
     public uint heal;
     public uint shieldBreak;
+    public uint vampirism;
     public string cardDescription;
     public List<Effect.EffectTag> tags;
 
@@ -25,6 +26,7 @@ public class Card
         this.heal = template.heal;
         this.shieldBreak = template.shieldBreak;
         this.cardDescription = template.cardDescription;
+        this.vampirism = template.vampirism;
 
         HashSet<Effect.EffectTag> tags = new HashSet<Effect.EffectTag>();
         foreach (CardTemplate.EffectSlot effectSlot in template.effectSlots)

@@ -22,6 +22,7 @@ public class CardTemplate : MonoBehaviour
     public uint defense;
     public uint heal;
     public uint shieldBreak;
+    public uint vampirism;
     public string cardDescription;
 
     public List<EffectSlot> effectSlots;
@@ -30,7 +31,7 @@ public class CardTemplate : MonoBehaviour
 
     void Awake()
     {
-        CreateEffectSlots(1, 1, 1, 0);
+        CreateEffectSlots(1, 1, 1, 1);
     }
 
     public void CreateEffectSlots(uint commonNum, uint advancedNum, uint specialNum, uint definitiveNum)
@@ -73,6 +74,7 @@ public class CardTemplate : MonoBehaviour
         CalculateFinalDefense();
         CalculateFinalHeal();
         CalculateFinalShieldBreak();
+        CalculateVampirism();
         //BuildCardEffects();
         WriteCardEffectDescription();
     }
@@ -137,6 +139,21 @@ public class CardTemplate : MonoBehaviour
             }
         }
     }
+    
+    private void CalculateVampirism()
+    {
+        vampirism = 0;
+        for (var i = 0; i < effectSlots.Count; i++)
+        {
+            if (effectSlots[i].effect != null)
+            {
+                if (effectSlots[i].effect.vampirism)
+                {
+                    vampirism += 1;
+                }
+            }
+        }
+    }
 
     private void WriteCardEffectDescription()
     {
@@ -180,6 +197,11 @@ public class CardTemplate : MonoBehaviour
         }
 
         cardDescription += ".";
+
+        if (vampirism > 0)
+        {
+            cardDescription += " Recover " + vampirism + " health for each unblocked damage dealt.";
+        }
     }
 
 }

@@ -18,6 +18,7 @@ public class Effect
         Defense,
         Heal,
         ShieldBreak,
+        Vampirism,
         //AttackBuff,
         //DeffenseBuff,
     }
@@ -32,6 +33,7 @@ public class Effect
     public uint defense;
     public uint heal;
     public uint shieldBreak;
+    public bool vampirism;
 
     //public uint buffDuration;
     //public uint attackBuff;
