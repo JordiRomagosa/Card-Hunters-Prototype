@@ -71,11 +71,15 @@ public class Character : MonoBehaviour
     public uint RealizeCardActionsReturnDamage(Character target, Card playingCard)
     {
         uint damage = target.AttackCharacterReturnDamage(playingCard.attack, playingCard.shieldBreak);
-        Debug.Log("Damage inflicted: " + damage);
 
         if (playingCard.vampirism > 0)
         {
             healthCurrent += (int) (playingCard.vampirism * damage);
+        }
+
+        if (playingCard.energyBoost > 0)
+        {
+            energyCurrent += playingCard.energyBoost;
         }
 
         healthCurrent += (int)playingCard.heal;
@@ -89,8 +93,6 @@ public class Character : MonoBehaviour
 
     public uint AttackCharacterReturnDamage(uint attack, uint shieldBreak)
     {
-        Debug.Log("Dealing damage " + attack + " with shieldbreak " + shieldBreak + " to character with shield " + shieldCurrent);
-
         if (shieldBreak > 0 && shieldCurrent > 0)
         {
             shieldCurrent -= (int)shieldBreak;

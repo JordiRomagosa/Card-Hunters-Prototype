@@ -21,6 +21,7 @@ public class Effect
         Vampirism,
         DoubleDamage,
         DoubleShield,
+        EnergyBoost,
     }
 
     public string effectName;
@@ -36,6 +37,7 @@ public class Effect
     public bool vampirism;
     public bool doubleDamage;
     public bool doubleShield;
+    public uint energyBoost;
 
     //public uint buffDuration;
     //public uint attackBuff;

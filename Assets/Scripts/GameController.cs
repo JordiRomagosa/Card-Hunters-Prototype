@@ -171,7 +171,7 @@ public class GameController : MonoBehaviour
     public void EndTurnAndStartNext()
     {
         PrepareNewTurn();
-        Invoke("ApplyCardEffectsAndStartNewTurn", 3.0f);
+        Invoke("ApplyCardEffectsAndStartNewTurn", 5.0f);
     }
 
     private void PrepareNewTurn()

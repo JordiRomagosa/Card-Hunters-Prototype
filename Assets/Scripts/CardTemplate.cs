@@ -24,6 +24,7 @@ public class CardTemplate : MonoBehaviour
     public uint shieldBreak;
     public uint vampirism;
     public string cardDescription;
+    public uint energyBoost;
 
     public List<EffectSlot> effectSlots;
 
@@ -75,6 +76,7 @@ public class CardTemplate : MonoBehaviour
         CalculateFinalHeal();
         CalculateFinalShieldBreak();
         CalculateVampirism();
+        CalculateEnergyBoost();
         //BuildCardEffects();
         WriteCardEffectDescription();
     }
@@ -178,6 +180,18 @@ public class CardTemplate : MonoBehaviour
         }
     }
 
+    private void CalculateEnergyBoost()
+    {
+        energyBoost = 0;
+        for (var i = 0; i < effectSlots.Count; i++)
+        {
+            if (effectSlots[i].effect != null)
+            {
+                energyBoost += effectSlots[i].effect.energyBoost;
+            }
+        }
+    }
+
     private void WriteCardEffectDescription()
     {
         cardDescription = "";
@@ -219,11 +233,27 @@ public class CardTemplate : MonoBehaviour
             cardDescription += s;
         }
 
-        cardDescription += ".";
-
         if (vampirism > 0)
         {
-            cardDescription += " Recover " + vampirism + " health for each unblocked damage dealt.";
+            if (cardDescription != "")
+            {
+                cardDescription += ". ";
+            }
+            cardDescription += "Recover " + vampirism + " health for each unblocked damage dealt";
+        }
+
+        if (energyBoost > 0)
+        {
+            if (cardDescription != "")
+            {
+                cardDescription += ". ";
+            }
+            cardDescription += "Gain " + energyBoost + " energy at the end of this turn";
+        }
+
+        if (cardDescription != "")
+        {
+            cardDescription += ".";
         }
     }
 

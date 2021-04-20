@@ -11,3 +11,4 @@
 {"cardID":0,"cardName":"Vampiric Strike","energyCost":3,"attack":2,"defense":0,"heal":0,"shieldBreak":0,"vampirism":1,"cardDescription":"Deal 2 damage. Recover 1 health for each unblocked damage dealt.","tags":[0,4]}
 {"cardID":0,"cardName":"Critic Strike","energyCost":5,"attack":6,"defense":0,"heal":0,"shieldBreak":0,"vampirism":0,"cardDescription":"Deal 6 damage.","tags":[0,5]}
 {"cardID":0,"cardName":"Force Field","energyCost":5,"attack":0,"defense":6,"heal":0,"shieldBreak":0,"vampirism":0,"cardDescription":"Gain 6 shield.","tags":[1,6]}
+{"cardID":0,"cardName":"Concentrate","energyCost":0,"attack":0,"defense":0,"heal":0,"shieldBreak":0,"vampirism":0,"energyBoost":2,"cardDescription":"Gain 2 energy at the end of this turn.","tags":[7]}
