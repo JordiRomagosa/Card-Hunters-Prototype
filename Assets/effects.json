@@ -1,6 +1,8 @@
-{"effectName":"Strike","description":"deal 1 damage","rarity":0,"tags":[0],"energyCost":1,"attack":1,"defense":0,"heal":0,"shieldBreak":0,"vampirism":false}
-{"effectName":"Defend","description":"gain 1 shield","rarity":0,"tags":[1],"energyCost":1,"attack":0,"defense":1,"heal":0,"shieldBreak":0,"vampirism":false}
-{"effectName":"Heal","description":"recover 1 hit point","rarity":0,"tags":[2],"energyCost":3,"attack":0,"defense":0,"heal":2,"shieldBreak":0,"vampirism":false}
-{"effectName":"Defensive Strike","description":"deal 1 damage and gain 1 shield","rarity":1,"tags":[0,1],"energyCost":2,"attack":1,"defense":1,"heal":0,"shieldBreak":0,"vampirism":false}
-{"effectName":"Shield Break","description":"deal 1 damage, two if the enemy has shield","rarity":1,"tags":[0,1],"energyCost":1,"attack":0,"defense":1,"heal":0,"shieldBreak":0,"vampirism":false}
-{"effectName":"Vampiric Touch","description":"heal for unblocked damage dealt with this card","rarity":2,"tags":[4],"energyCost":1,"attack":0,"defense":0,"heal":0,"shieldBreak":0,"vampirism":true}
+{"effectName":"Strike","description":"deal 1 damage","rarity":0,"tags":[0],"energyCost":1,"attack":1,"defense":0,"heal":0,"shieldBreak":0,"vampirism":false,"doubleDamage":false,"doubleShield":false}
+{"effectName":"Defend","description":"gain 1 shield","rarity":0,"tags":[1],"energyCost":1,"attack":0,"defense":1,"heal":0,"shieldBreak":0,"vampirism":false,"doubleDamage":false,"doubleShield":false}
+{"effectName":"Heal","description":"recover 1 hit point","rarity":0,"tags":[2],"energyCost":3,"attack":0,"defense":0,"heal":2,"shieldBreak":0,"vampirism":false,"doubleDamage":false,"doubleShield":false}
+{"effectName":"Defensive Strike","description":"deal 1 damage and gain 1 shield","rarity":1,"tags":[0,1],"energyCost":2,"attack":1,"defense":1,"heal":0,"shieldBreak":0,"vampirism":false,"doubleDamage":false,"doubleShield":false}
+{"effectName":"Shield Break","description":"deal 1 damage, two if the enemy has shield","rarity":1,"tags":[0,1],"energyCost":1,"attack":0,"defense":1,"heal":0,"shieldBreak":0,"vampirism":false,"doubleDamage":false,"doubleShield":false}
+{"effectName":"Vampiric Touch","description":"heal for unblocked damage dealt with this card","rarity":2,"tags":[4],"energyCost":1,"attack":0,"defense":0,"heal":0,"shieldBreak":0,"vampirism":true,"doubleDamage":false,"doubleShield":false}
+{"effectName":"Critic Strike","description":"multiply damage of this card by two","rarity":3,"tags":[5],"energyCost":2,"attack":0,"defense":0,"heal":0,"shieldBreak":0,"vampirism":false,"doubleDamage":true,"doubleShield":false}
+{"effectName":"Plated","description":"multiply shield of this card by two","rarity":3,"tags":[6],"energyCost":2,"attack":0,"defense":0,"heal":0,"shieldBreak":0,"vampirism":false,"doubleDamage":false,"doubleShield":true}

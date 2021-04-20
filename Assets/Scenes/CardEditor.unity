@@ -299,6 +299,7 @@ MonoBehaviour:
   defense: 0
   heal: 0
   shieldBreak: 0
+  vampirism: 0
   cardDescription: 
 --- !u!1 &108154293
 GameObject:
@@ -2948,7 +2949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b8144af77f2ab343a27dd9ca77c49e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalEffects: 5
+  totalEffects: 6
   effectsCommon:
   - effectName: Strike
     description: deal 1 damage
@@ -2959,6 +2960,9 @@ MonoBehaviour:
     defense: 0
     heal: 0
     shieldBreak: 0
+    vampirism: 0
+    doubleDamage: 0
+    doubleShield: 0
   - effectName: Defend
     description: gain 1 shield
     rarity: 0
@@ -2968,6 +2972,9 @@ MonoBehaviour:
     defense: 1
     heal: 0
     shieldBreak: 0
+    vampirism: 0
+    doubleDamage: 0
+    doubleShield: 0
   - effectName: Heal
     description: recover 1 hit point
     rarity: 0
@@ -2977,6 +2984,9 @@ MonoBehaviour:
     defense: 0
     heal: 2
     shieldBreak: 0
+    vampirism: 0
+    doubleDamage: 0
+    doubleShield: 0
   effectsAdvanced:
   - effectName: Defensive Strike
     description: deal 1 damage and gain 1 shield
@@ -2987,6 +2997,9 @@ MonoBehaviour:
     defense: 1
     heal: 0
     shieldBreak: 0
+    vampirism: 0
+    doubleDamage: 0
+    doubleShield: 0
   - effectName: Shield Break
     description: deal 1 damage, two if the enemy has shield
     rarity: 1
@@ -2996,8 +3009,47 @@ MonoBehaviour:
     defense: 1
     heal: 0
     shieldBreak: 0
-  effectsSpecial: []
-  effectsDefinitive: []
+    vampirism: 0
+    doubleDamage: 0
+    doubleShield: 0
+  effectsSpecial:
+  - effectName: Vampiric Touch
+    description: heal for unblocked damage dealt with this card
+    rarity: 2
+    tags: 04000000
+    energyCost: 1
+    attack: 0
+    defense: 0
+    heal: 0
+    shieldBreak: 0
+    vampirism: 1
+    doubleDamage: 0
+    doubleShield: 0
+  effectsDefinitive:
+  - effectName: Critic Strike
+    description: multiply damage of this card by two
+    rarity: 3
+    tags: 05000000
+    energyCost: 2
+    attack: 0
+    defense: 0
+    heal: 0
+    shieldBreak: 0
+    vampirism: 0
+    doubleDamage: 1
+    doubleShield: 0
+  - effectName: Plated
+    description: multiply shield of this card by two
+    rarity: 3
+    tags: 06000000
+    energyCost: 2
+    attack: 0
+    defense: 0
+    heal: 0
+    shieldBreak: 0
+    vampirism: 0
+    doubleDamage: 0
+    doubleShield: 1
 --- !u!4 &2014078472
 Transform:
   m_ObjectHideFlags: 0

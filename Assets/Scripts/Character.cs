@@ -12,7 +12,7 @@ public class Character : MonoBehaviour
 
     public int healthCurrent;
     public uint energyCurrent;
-    public uint shieldCurrent;
+    public int shieldCurrent;
 
     void Start()
     {
@@ -50,7 +50,7 @@ public class Character : MonoBehaviour
         }
 
         energyCurrent -= playingCard.energyCost;
-        shieldCurrent += playingCard.defense;
+        shieldCurrent += (int)playingCard.defense;
 
         return true;
     }
@@ -63,7 +63,7 @@ public class Character : MonoBehaviour
         }
 
         energyCurrent += playingCard.energyCost;
-        shieldCurrent -= playingCard.defense;
+        shieldCurrent -= (int)playingCard.defense;
 
         return true;
     }
@@ -71,6 +71,7 @@ public class Character : MonoBehaviour
     public uint RealizeCardActionsReturnDamage(Character target, Card playingCard)
     {
         uint damage = target.AttackCharacterReturnDamage(playingCard.attack, playingCard.shieldBreak);
+        Debug.Log("Damage inflicted: " + damage);
 
         if (playingCard.vampirism > 0)
         {
@@ -88,37 +89,40 @@ public class Character : MonoBehaviour
 
     public uint AttackCharacterReturnDamage(uint attack, uint shieldBreak)
     {
+        Debug.Log("Dealing damage " + attack + " with shieldbreak " + shieldBreak + " to character with shield " + shieldCurrent);
+
+        if (shieldBreak > 0 && shieldCurrent > 0)
+        {
+            shieldCurrent -= (int)shieldBreak;
+
+            if (shieldCurrent < 0)
+            {
+                shieldCurrent = 0;
+            }
+        }
+
+        if (attack <= 0)
+        {
+            return 0;
+        }
+
         uint assignedDamage = attack;
 
         if (shieldCurrent > 0)
         {
-            if (shieldBreak > 0)
-            {
-                shieldCurrent -= shieldBreak;
-
-                if (shieldCurrent < 0)
-                {
-                    shieldCurrent = 0;
-                }
-            }
-
             if (assignedDamage <= shieldCurrent)
             {
-                shieldCurrent -= assignedDamage;
+                shieldCurrent -= (int)assignedDamage;
                 return 0;
             }
             else
             {
-                assignedDamage -= shieldCurrent;
+                assignedDamage -= (uint)shieldCurrent;
                 shieldCurrent = 0;
             }
         }
 
         healthCurrent -= (int)assignedDamage;
-        //if (healthCurrent < 0)
-        //{
-        //    healthCurrent = 0;
-        //}
 
         return assignedDamage;
     }

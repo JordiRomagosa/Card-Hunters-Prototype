@@ -19,8 +19,8 @@ public class Effect
         Heal,
         ShieldBreak,
         Vampirism,
-        //AttackBuff,
-        //DeffenseBuff,
+        DoubleDamage,
+        DoubleShield,
     }
 
     public string effectName;
@@ -34,6 +34,8 @@ public class Effect
     public uint heal;
     public uint shieldBreak;
     public bool vampirism;
+    public bool doubleDamage;
+    public bool doubleShield;
 
     //public uint buffDuration;
     //public uint attackBuff;

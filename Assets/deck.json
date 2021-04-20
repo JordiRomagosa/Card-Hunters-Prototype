@@ -1,7 +1,7 @@
 {"cardID":0,"cardName":"Strike","energyCost":1,"attack":1,"defense":0,"heal":0,"shieldBreak":0,"vampirism":0,"cardDescription":"Deal 1 damage.","tags":[0]}
 {"cardID":0,"cardName":"Strike","energyCost":1,"attack":1,"defense":0,"heal":0,"shieldBreak":0,"vampirism":0,"cardDescription":"Deal 1 damage.","tags":[0]}
 {"cardID":0,"cardName":"Shield","energyCost":1,"attack":0,"defense":1,"heal":0,"shieldBreak":0,"vampirism":0,"cardDescription":"Gain 1 shield.","tags":[1]}
-{"cardID":0,"cardName":"Shield Break","energyCost":1,"attack":1,"defense":0,"heal":0,"shieldBreak":0,"vampirism":0,"cardDescription":"Break 1 shield points and then deal 1 damage.","tags":[0,1]}
+{"cardID":0,"cardName":"Shield Break","energyCost":1,"attack":1,"defense":0,"heal":0,"shieldBreak":1,"vampirism":0,"cardDescription":"Break 1 shield points and then deal 1 damage.","tags":[0,1]}
 {"cardID":0,"cardName":"Double Strike","energyCost":2,"attack":2,"defense":0,"heal":0,"shieldBreak":0,"vampirism":0,"cardDescription":"Deal 2 damage.","tags":[0]}
 {"cardID":0,"cardName":"Hard Shield","energyCost":2,"attack":0,"defense":2,"heal":0,"shieldBreak":0,"vampirism":0,"cardDescription":"Gain 2 shield.","tags":[1]}
 {"cardID":0,"cardName":"Defensive Strike","energyCost":2,"attack":1,"defense":1,"heal":0,"shieldBreak":0,"vampirism":0,"cardDescription":"Deal 1 damage and gain 1 shield.","tags":[0,1]}
@@ -9,3 +9,5 @@
 {"cardID":0,"cardName":"Triple Strike","energyCost":3,"attack":3,"defense":0,"heal":0,"shieldBreak":0,"vampirism":0,"cardDescription":"Deal 3 damage.","tags":[0]}
 {"cardID":0,"cardName":"Expert Strike","energyCost":3,"attack":2,"defense":1,"heal":0,"shieldBreak":0,"vampirism":0,"cardDescription":"Deal 2 damage and gain 1 shield.","tags":[0,1]}
 {"cardID":0,"cardName":"Vampiric Strike","energyCost":3,"attack":2,"defense":0,"heal":0,"shieldBreak":0,"vampirism":1,"cardDescription":"Deal 2 damage. Recover 1 health for each unblocked damage dealt.","tags":[0,4]}
+{"cardID":0,"cardName":"Critic Strike","energyCost":5,"attack":6,"defense":0,"heal":0,"shieldBreak":0,"vampirism":0,"cardDescription":"Deal 6 damage.","tags":[0,5]}
+{"cardID":0,"cardName":"Force Field","energyCost":5,"attack":0,"defense":6,"heal":0,"shieldBreak":0,"vampirism":0,"cardDescription":"Gain 6 shield.","tags":[1,6]}

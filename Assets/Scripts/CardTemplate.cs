@@ -94,25 +94,48 @@ public class CardTemplate : MonoBehaviour
     private void CalculateFinalAttack()
     {
         attack = 0;
+        bool doubleDamage = false;
 
         for (var i = 0; i < effectSlots.Count; i++)
         {
             if (effectSlots[i].effect != null)
             {
                 attack += effectSlots[i].effect.attack;
+
+                if (effectSlots[i].effect.doubleDamage)
+                {
+                    doubleDamage = true;
+                }
             }
+        }
+
+        if (doubleDamage)
+        {
+            attack *= 2;
         }
     }
 
     private void CalculateFinalDefense()
     {
         defense = 0;
+        bool doubleShield = false;
+
         for(var i = 0; i < effectSlots.Count; i++)
         {
             if (effectSlots[i].effect != null)
             {
                 defense += effectSlots[i].effect.defense;
+
+                if (effectSlots[i].effect.doubleShield)
+                {
+                    doubleShield = true;
+                }
             }
+        }
+
+        if (doubleShield)
+        {
+            defense *= 2;
         }
     }
 
